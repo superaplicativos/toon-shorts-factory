@@ -1,0 +1,82 @@
+{
+  "channel_name": "YOUR CHANNEL NAME",
+  "niche": "One or two sentences: what every episode is about and why people watch it.",
+  "audience": "who watches (age, country, interests)",
+  "language": "en",
+  "language_name": "American English",
+  "topic_source": "wikipedia",
+  "wikipedia_lang": "en",
+  "videos_per_day": 2,
+  "schedule": [
+    "14:10",
+    "20:10"
+  ],
+  "no_repeat_last": 150,
+  "text_providers": [
+    "pollinations"
+  ],
+  "cast": {
+    "HOST": {
+      "role": "personality of the main host (curious? clumsy? sarcastic?)",
+      "voice": [
+        "en-US-AndrewNeural",
+        "+8%",
+        "+10Hz"
+      ],
+      "look": {
+        "height": 620,
+        "shirt": "#EB781E",
+        "pants": "#3C5078",
+        "hair_color": "#3C2819",
+        "hair_style": "short",
+        "prop": "none"
+      }
+    },
+    "EXPERT": {
+      "role": "the one who knows the real facts and explains them clearly",
+      "voice": [
+        "en-US-AvaNeural",
+        "+6%",
+        "+6Hz"
+      ],
+      "look": {
+        "height": 600,
+        "shirt": "#1EA08C",
+        "pants": "#F0E1BE",
+        "hair_color": "#231914",
+        "hair_style": "buns",
+        "prop": "notepad"
+      }
+    },
+    "PET": {
+      "role": "sidekick with one-liners and comic relief (max 3 lines)",
+      "voice": [
+        "en-US-AnaNeural",
+        "+16%",
+        "+55Hz"
+      ],
+      "look": {
+        "pet": "parrot"
+      }
+    }
+  },
+  "formats": {
+    "three_facts": "THREE FACTS: the 3 most surprising facts about the topic, each bigger than the last.",
+    "myth_vs_fact": "MYTH OR FACT: the sidekick states common beliefs; the expert confirms or busts each one.",
+    "why": "WHY? Open with a strange question about the topic and answer it step by step."
+  },
+  "extra_rules": [],
+  "seo_seeds": [
+    "{topic}",
+    "{topic} facts"
+  ],
+  "description_footer": "New episode every day. Subscribe!",
+  "youtube": {
+    "privacy": "public",
+    "category_id": "24",
+    "made_for_kids": false,
+    "fixed_tags": [
+      "shorts"
+    ]
+  }
+}

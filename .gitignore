@@ -1,0 +1,21 @@
+# secrets: NEVER commit
+secrets/*
+!secrets/README.md
+channels/*/.secrets/
+**/client_secret*.json
+**/*token*.json
+*.key
+.env
+
+# generated
+channels/*/output/
+channels/*/.cache/
+channels/*/history.json
+channels/*/cast_preview.png
+channels/*/cron.log
+run_*.bat
+tools/
+.venv/
+__pycache__/
+*.pyc
+logs/

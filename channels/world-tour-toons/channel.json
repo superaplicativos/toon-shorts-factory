@@ -1,0 +1,118 @@
+{
+  "channel_name": "World Tour Toons",
+  "niche": "Travel and geography facts: every episode the cast visits one real place and reveals surprising, verified facts about it.",
+  "audience": "curious kids, teens and adults, mostly in the US",
+  "language": "en",
+  "language_name": "American English",
+  "topic_source": "wikipedia",
+  "wikipedia_lang": "en",
+  "videos_per_day": 2,
+  "schedule": [
+    "14:10",
+    "20:10"
+  ],
+  "no_repeat_last": 150,
+  "text_providers": [
+    "pollinations"
+  ],
+  "text_model": "openai-large",
+  "target_seconds": "35 to 45",
+  "cast": {
+    "MILO": {
+      "role": "energetic traveler with a camera, makes bold guesses that are often wrong, funny",
+      "voice": [
+        "en-US-AndrewNeural",
+        "+8%",
+        "+10Hz"
+      ],
+      "look": {
+        "height": 620,
+        "shirt": "#EB781E",
+        "pants": "#3C5078",
+        "shoes": "#F0F0F0",
+        "hair_color": "#3C2819",
+        "hair_style": "cap",
+        "cap_color": "#1E6EC8",
+        "prop": "camera"
+      }
+    },
+    "ZARA": {
+      "role": "sharp and curious, knows the real facts and explains them clearly",
+      "voice": [
+        "en-US-AvaNeural",
+        "+6%",
+        "+6Hz"
+      ],
+      "look": {
+        "height": 600,
+        "shirt": "#1EA08C",
+        "pants": "#F0E1BE",
+        "shoes": "#C83C46",
+        "hair_color": "#231914",
+        "hair_style": "afro",
+        "prop": "map",
+        "skin": "#AA704E",
+        "earrings": true
+      }
+    },
+    "KIKO": {
+      "role": "their parrot sidekick, short punchy one-liners, overreacts, comic relief (max 3 lines)",
+      "voice": [
+        "en-US-AnaNeural",
+        "+16%",
+        "+55Hz"
+      ],
+      "look": {
+        "pet": "parrot"
+      }
+    }
+  },
+  "voice_fallbacks": {
+    "en-US-AndrewNeural": "en-US-GuyNeural",
+    "en-US-AvaNeural": "en-US-AriaNeural"
+  },
+  "formats": {
+    "weird_facts": "THREE WEIRD FACTS. The hosts reveal the 3 most surprising facts about the place, each bigger than the last. The sidekick overreacts to each one.",
+    "survive": "COULD YOU SURVIVE? The cast imagines living one day there: weather, food, rules, distances, daily life. End with a verdict.",
+    "myth_vs_fact": "MYTH OR FACT. The sidekick states things he 'heard'; the expert confirms or busts each one with the real fact.",
+    "guess_where": "GUESS WHERE WE ARE. Three clues from vague to obvious; do NOT say the place name until the final line. The hook must NOT reveal the place.",
+    "records": "RECORD BREAKER. Biggest, oldest, highest, coldest, smallest or first: the place's real records, with vivid comparisons.",
+    "why": "WHY IS IT LIKE THAT? Open with a strange question about the place and answer it step by step with real causes."
+  },
+  "format_weights": {
+    "weird_facts": 1.4,
+    "guess_where": 1.3,
+    "records": 1.1
+  },
+  "hide_topic_in_title_formats": [
+    "guess_where"
+  ],
+  "extra_rules": [
+    "Skip wars, deaths, disasters and crimes even if they are in the source."
+  ],
+  "seo_seeds": [
+    "{topic} facts",
+    "{topic} weird",
+    "why is {topic}"
+  ],
+  "subtitles": {
+    "font": "Arial Black",
+    "size": 82,
+    "margin": 120,
+    "words_per_block": 3
+  },
+  "description_footer": "Milo, Zara and Kiko visit a new place every day with real facts you can check.\nSubscribe and tell us in the comments where we should go next!\nOriginal animated series: characters, scripts and animation made for this channel.",
+  "youtube": {
+    "privacy": "public",
+    "category_id": "19",
+    "made_for_kids": false,
+    "fixed_tags": [
+      "travel facts",
+      "geography",
+      "fun facts",
+      "animated",
+      "shorts"
+    ],
+    "notify_subscribers": true
+  }
+}

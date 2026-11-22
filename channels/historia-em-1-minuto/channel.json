@@ -1,0 +1,100 @@
+{
+  "channel_name": "História em 1 Minuto",
+  "niche": "História em primeira pessoa: 'e se você vivesse em...' Roma antiga, Egito, Idade Média, Brasil colonial. Fatos reais e curiosos do dia a dia de cada época.",
+  "audience": "jovens e adultos brasileiros curiosos por história",
+  "language": "pt",
+  "language_name": "português do Brasil",
+  "topic_source": "wikipedia",
+  "wikipedia_lang": "pt",
+  "videos_per_day": 2,
+  "schedule": [
+    "11:40",
+    "18:40"
+  ],
+  "no_repeat_last": 120,
+  "text_providers": [
+    "pollinations"
+  ],
+  "cast": {
+    "BETO": {
+      "role": "garoto exagerado que se imagina vivendo na época, faz perguntas que todo mundo faria",
+      "voice": [
+        "pt-BR-AntonioNeural",
+        "+8%",
+        "+30Hz"
+      ],
+      "look": {
+        "height": 600,
+        "shirt": "#C8462D",
+        "pants": "#2D4B78",
+        "hair_color": "#5A3A1E",
+        "hair_style": "messy",
+        "prop": "backpack"
+      }
+    },
+    "LIA": {
+      "role": "historiadora mirim, responde com fatos reais e comparações com hoje",
+      "voice": [
+        "pt-BR-FranciscaNeural",
+        "+8%",
+        "+20Hz"
+      ],
+      "look": {
+        "height": 580,
+        "shirt": "#6A3FB0",
+        "pants": "#E8D8B0",
+        "hair_color": "#1E1410",
+        "hair_style": "side_ponytail",
+        "prop": "notepad",
+        "blush": true
+      }
+    },
+    "PROF": {
+      "role": "professor maluco e engraçado que aparece para o fato final",
+      "voice": [
+        "pt-BR-AntonioNeural",
+        "-4%",
+        "-20Hz"
+      ],
+      "look": {
+        "height": 740,
+        "shirt": "#D7D7CD",
+        "pants": "#2D2D32",
+        "shoes": "#1E1E1E",
+        "hair_color": "#C8C8C8",
+        "hair_style": "wild",
+        "lab_coat": true,
+        "adult": true,
+        "goggles": true
+      }
+    }
+  },
+  "formats": {
+    "um_dia": "UM DIA EM... Beto se imagina vivendo um dia na época: comida, trabalho, banho, diversão. Lia corrige com fatos reais.",
+    "voce_sobreviveria": "VOCÊ SOBREVIVERIA? Três situações reais da época, cada uma mais difícil. Termine com um veredito.",
+    "mito_ou_verdade": "MITO OU VERDADE. Beto conta coisas que 'ouviu falar'; Lia confirma ou desmente com o fato real.",
+    "quanto_custava": "QUANTO CUSTAVA? Preços, salários e trocas da época comparados com hoje, de forma divertida."
+  },
+  "extra_rules": [
+    "Evite guerras sangrentas, execuções, escravidão tratada como piada e qualquer tragédia como entretenimento."
+  ],
+  "seo_seeds": [
+    "{topic}",
+    "{topic} curiosidades",
+    "como era {topic}"
+  ],
+  "source_credit": "Fonte dos fatos: Wikipédia, \"{title}\" ({url}), CC BY-SA 4.0.",
+  "description_footer": "Beto, Lia e o Prof viajam no tempo todo dia com fatos reais.\nInscreva-se e diga nos comentários qual época vem a seguir!",
+  "youtube": {
+    "privacy": "public",
+    "category_id": "27",
+    "made_for_kids": false,
+    "fixed_tags": [
+      "história",
+      "curiosidades",
+      "história do brasil",
+      "desenho animado",
+      "shorts"
+    ]
+  }
+}
