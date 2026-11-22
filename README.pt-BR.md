@@ -80,6 +80,20 @@ skill/               skill do Claude que monta o canal com você
 docs/                instalação, referência de configuração, monetização, problemas comuns
 ```
 
+## Comandos
+
+| Comando | O que faz |
+|---|---|
+| `toonshorts list` | lista os canais |
+| `toonshorts new <slug> [--from <outro>]` | cria um canal a partir do modelo ou de outro canal |
+| `toonshorts cast <slug>` | gera a prévia do elenco |
+| `toonshorts check [<slug>]` | confere ferramentas, chaves e a conexão com o YouTube |
+| `toonshorts authorize <slug> [--paste]` | conecta o canal do YouTube (uma vez só) |
+| `toonshorts preview <slug>` | gera um vídeo sem publicar |
+| `toonshorts pilot <slug>` | gera um vídeo e publica como privado |
+| `toonshorts run <slug> [--private] [--force]` | a tarefa diária |
+| `toonshorts schedule <slug>` | cria as tarefas diárias no Windows ou mostra as linhas do crontab |
+
 ## Lições aprendidas (já resolvidas no código)
 
 * Em alguns builds do ffmpeg para Windows, mandar quadros, áudio e legendas numa passada só, ou usar o filtro `loudnorm`, **trava para sempre**. Por isso a renderização é feita em duas passadas e o volume usa `volume + alimiter`.
