@@ -153,6 +153,32 @@ def _layout(ids, W, linha_chao):
     return pos
 
 
+def tratar_audio(origem, destino, dur_total, ganho_db=4.0):
+    """+4 dB with a soft limiter and silence padding to the video length, standard library only."""
+    import array
+    with wave.open(str(origem), "rb") as w:
+        canais, largura, taxa = w.getnchannels(), w.getsampwidth(), w.getframerate()
+        dados = w.readframes(w.getnframes())
+    if largura != 2:
+        raise RuntimeError("narration must be 16-bit PCM")
+    amostras = array.array("h")
+    amostras.frombytes(dados)
+    ganho, teto, joelho = 10 ** (ganho_db / 20), 32767 * 0.9, 32767 * 0.7
+    saida = array.array("h", bytes(2 * max(len(amostras), int(dur_total * taxa) * canais)))
+    for k, v in enumerate(amostras):
+        x = v * ganho
+        a = abs(x)
+        if a > joelho:
+            a = joelho + (teto - joelho) * math.tanh((a - joelho) / (teto - joelho))
+            x = a if x > 0 else -a
+        saida[k] = int(x)
+    with wave.open(str(destino), "wb") as w:
+        w.setnchannels(canais)
+        w.setsampwidth(2)
+        w.setframerate(taxa)
+        w.writeframes(saida.tobytes())
+
+
 def renderizar_cartoon(cenas, total_audio, pasta, W, H, fps, ffmpeg, raiz, rng, cartao=None, cartao_seg=3.5,
                        usar_ia=True, ass="legendas.ass", estilo_cenario=None):
     linha_chao = int(H * 0.80)
@@ -233,14 +259,29 @@ def renderizar_cartoon(cenas, total_audio, pasta, W, H, fps, ffmpeg, raiz, rng, 
     if proc.wait() != 0:
         raise RuntimeError("ffmpeg failed in pass 1 (see ffmpeg_passo1.txt)")
     log.info("Animating... 100%. Adding voices and subtitles.")
-    cmd2 = [ffmpeg, "-y", "-v", "error", "-nostdin", "-i", "video_mudo.mp4", "-i", "narracao.wav",
-            "-vf", f"ass={ass},format=yuv420p",
-            "-af", f"apad=whole_dur={dur_total:.2f},volume=4dB,alimiter=limit=0.9:level=disabled,aresample=48000",
-            "-t", f"{dur_total:.2f}", "-map", "0:v", "-map", "1:a",
-            "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", "-pix_fmt", "yuv420p",
-            "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart", "video_final.mp4"]
-    with open(pasta / "ffmpeg_passo2.txt", "w", encoding="utf-8") as err2:
-        r = subprocess.run(cmd2, stdin=subprocess.DEVNULL, stderr=err2, cwd=str(pasta))
-    if r.returncode != 0:
+    # Gain and soft limiter in Python: on Windows, ffmpeg 9 hangs when audio filters (volume, alimiter,
+    # aresample) run in the same command as the ass subtitle filter. The final command only uses apad.
+    tratar_audio(pasta / "narracao.wav", pasta / "audio_final.wav", dur_total)
+    comum = [ffmpeg, "-y", "-v", "error", "-nostdin", "-i", "video_mudo.mp4", "-i", "audio_final.wav",
+             "-vf", f"ass={ass},format=yuv420p", "-map", "0:v", "-map", "1:a", "-c:v", "libx264",
+             "-preset", "veryfast", "-crf", "20"]
+    variantes = [
+        comum + ["-af", f"apad=whole_dur={dur_total:.2f}", "-t", f"{dur_total:.2f}", "-c:a", "aac", "video_final.mp4"],
+        comum + ["-t", f"{dur_total:.2f}", "-c:a", "aac", "video_final.mp4"],
+    ]
+    r = None
+    for n, cmd2 in enumerate(variantes, 1):
+        with open(pasta / "ffmpeg_passo2.txt", "w", encoding="utf-8") as err2:
+            try:
+                r = subprocess.run(cmd2, stdin=subprocess.DEVNULL, stderr=err2, cwd=str(pasta),
+                                   timeout=max(120, dur_total * 3))
+                if r.returncode == 0:
+                    break
+                log.warning("ffmpeg failed in pass 2 (variant %d).", n)
+            except subprocess.TimeoutExpired:
+                r = None
+                log.warning("ffmpeg hung in pass 2 (variant %d); trying another.", n)
+    (pasta / "audio_final.wav").unlink(missing_ok=True)
+    if r is None or r.returncode != 0:
         raise RuntimeError("ffmpeg failed in pass 2 (see ffmpeg_passo2.txt)")
     return dur_total
